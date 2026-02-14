@@ -1,0 +1,8 @@
+.Renviron
+debug_smtp.R
+final_debug_smtp.R
+deploy_app.R
+.Rproj.user
+.Rhistory
+.RData
+*.Ruserdata
