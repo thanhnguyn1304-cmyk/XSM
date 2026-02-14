@@ -81,12 +81,23 @@ render_sensor_map <- function(data, variable) {
         return(NULL)
     }
 
-    # Create palette (handle reverse option if present)
-    reverse_pal <- if (!is.null(CONFIG$map$palette_reverse)) CONFIG$map$palette_reverse else FALSE
+    # Determine palette settings based on global config or data fallback
+    var_conf <- CONFIG$map$variable_settings[[variable]]
+
+    if (!is.null(var_conf)) {
+        domain_range <- var_conf$domain
+        reverse_pal <- var_conf$reverse
+    } else {
+        # Fallback: Use data range and default reverse setting
+        domain_range <- range(data[[variable]], na.rm = TRUE, finite = TRUE)
+        reverse_pal <- if (!is.null(CONFIG$map$palette_reverse)) CONFIG$map$palette_reverse else FALSE
+    }
+
     pal <- leaflet::colorNumeric(
         palette = CONFIG$map$color_palette,
-        domain = data[[variable]],
-        reverse = reverse_pal
+        domain = domain_range,
+        reverse = reverse_pal,
+        na.color = "transparent"
     )
 
     # Initialize map
@@ -126,7 +137,7 @@ render_sensor_map <- function(data, variable) {
                 lng = sensor_data$Longitude[1],
                 lat = sensor_data$Latitude[1],
                 color = "green", opacity = 1, fillOpacity = 1,
-                radius = 8, weight = 2,
+                radius = 7, weight = 2,
                 popup = paste("<strong>Start</strong><br>", sensor_data$Date[1])
             )
 
@@ -135,7 +146,7 @@ render_sensor_map <- function(data, variable) {
                 lng = tail(sensor_data$Longitude, 1),
                 lat = tail(sensor_data$Latitude, 1),
                 color = "red", opacity = 1, fillOpacity = 1,
-                radius = 8, weight = 2,
+                radius = 7, weight = 2,
                 popup = paste("<strong>End</strong><br>", tail(sensor_data$Date, 1))
             )
         }

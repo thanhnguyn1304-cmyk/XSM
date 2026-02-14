@@ -40,7 +40,7 @@ send_otp_email <- function(to_email, otp_code) {
                     subject = "Your Verification Code",
                     credentials = blastula::creds_envvar(
                         user = smtp_user,
-                        pass_envvar = "SMTP_PASS",
+                        pass_envvar = smtp_pass,
                         provider = NULL,
                         host = "smtp.gmail.com",
                         port = 465, # SSL connection required

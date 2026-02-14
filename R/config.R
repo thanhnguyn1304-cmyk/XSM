@@ -16,23 +16,37 @@ CONFIG <- list(
     # Access Control (Whitelist)
     # Only emails in this list can log in.
     allowed_emails = c(
-        "test@example.com", # For testing
-        "admin@gmail.com", # Example admin
         "phamquangd9@gmail.com",
-        "jackdaboiiii@gmail.com"
+        "thanhnguyn1304@gmail.com"
         # Add more emails here
     ),
 
     # Map Settings
     # Map Settings
     map = list(
-        provider = "CartoDB.Positron", # Reverting to original light map
-        marker_radius = 6,
+        provider = "CartoDB.Positron",
+        marker_radius = 5, # Increased to 5 for easier clicking
         marker_opacity = 0.8,
-        color_palette = "RdYlGn", # Red-Yellow-Green for gradient
-        palette_reverse = TRUE, # Reverse so Green is Low (Good) and Red is High (Bad)
-        line_weight = 5,
-        line_opacity = 0.8
+        color_palette = "RdYlGn", # Base Palette: Red -> Yellow -> Green
+        line_weight = 4, # Increased to 4 for balance
+        line_opacity = 0.8,
+
+        # Standard Health Thresholds for Color Scale
+        # domain: c(min, max) for the color mapping
+        # reverse: TRUE means Low=Green (Good), High=Red (Bad)
+        # reverse: FALSE means Low=Red (Bad), High=Green (Good)
+        variable_settings = list(
+            "PM1" = list(domain = c(0, 50), reverse = TRUE),
+            "PM25" = list(domain = c(0, 50), reverse = TRUE), # Good < 12, Unhealthy > 35
+            "PM10" = list(domain = c(0, 100), reverse = TRUE), # Good < 50
+            "TVOC" = list(domain = c(0, 1.0), reverse = TRUE), # Good < 0.5 ppm
+            "TVOC_Index" = list(domain = c(0, 500), reverse = TRUE), # Index usually 0-500
+            "CO2" = list(domain = c(400, 2000), reverse = TRUE), # Good < 1000 ppm
+            "AQS" = list(domain = c(0, 100), reverse = FALSE), # 100 is Best (Green)
+            "Temperature" = list(domain = c(0, 40), reverse = TRUE), # Hotter = Redder
+            "Humidity" = list(domain = c(0, 100), reverse = TRUE), # Wet = Blue/Green? Just standard 0-100
+            "Pressure" = list(domain = c(950, 1050), reverse = FALSE)
+        )
     ),
 
     # UI Settings
