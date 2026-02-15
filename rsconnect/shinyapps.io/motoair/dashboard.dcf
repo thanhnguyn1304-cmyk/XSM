@@ -1,0 +1,10 @@
+name: dashboard
+title:
+username: motoair
+account: motoair
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 16678389
+bundleId: 11584064
+url: https://motoair.shinyapps.io/dashboard/
+version: 1

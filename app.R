@@ -23,7 +23,7 @@ combined_data <- load_all_sensors()
 
 # --- UI ---
 ui <- shiny::fluidPage(
-  shiny::titlePanel("Atmotube Pro Dashboard"),
+  shiny::titlePanel("MOTOAIR Dashboard"),
   # Container for dynamic content (Login -> Verify -> Dashboard)
   shiny::uiOutput("page_content")
 )

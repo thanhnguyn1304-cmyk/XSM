@@ -16,8 +16,13 @@ CONFIG <- list(
     # Access Control (Whitelist)
     # Only emails in this list can log in.
     allowed_emails = c(
-        "phamquangd9@gmail.com",
-        "thanhnguyn1304@gmail.com"
+        "thanhnguyn1304@gmail.com",
+        "tung.pt@vinuni.edu.vn",
+        "gillott.s@vinuni.edu.vn",
+        "linh.bp@vinuni.edu.vn",
+        "vy.ntt@vinuni.edu.vn",
+        "tho.nta@vinuni.edu.vn",
+        "thao.ttp@vinuni.edu.vn"
         # Add more emails here
     ),
 
