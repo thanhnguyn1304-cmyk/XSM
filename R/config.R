@@ -17,6 +17,7 @@ CONFIG <- list(
     # Only emails in this list can log in.
     allowed_emails = c(
         "thanhnguyn1304@gmail.com",
+        "25thanh.nn@vinuni.edu.vn",
         "tung.pt@vinuni.edu.vn",
         "gillott.s@vinuni.edu.vn",
         "linh.bp@vinuni.edu.vn",
