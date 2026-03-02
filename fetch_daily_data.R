@@ -10,8 +10,7 @@ library(lubridate)
 # --- Configuration ---
 API_KEY <- Sys.getenv("ATMOTUBE_API_KEY")
 if (API_KEY == "") {
-    # Fallback to hardcoded key if env var not set
-    API_KEY <- "1m8HlFCnBHuxQcW5cW8i98Z4DYOchmxCSLb3P06DrFFQ3THSmtSEW5Qc80Y52rVY"
+    stop("ATMOTUBE_API_KEY environment variable is not set. Please set it before running this script.")
 }
 CSV_FILE <- "atmotube_pro2_export_sample_default.csv"
 
