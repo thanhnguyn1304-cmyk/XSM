@@ -43,19 +43,23 @@ jobs:
         run: |
           git config --global user.name "GitHub Actions Bot"
           git config --global user.email "actions@github.com"
-          git config --global pull.rebase true
           
-          # Fetch the latest state from remote
+          # Fetch remote
           git fetch origin main
           
-          # Add our changes
+          # Stash our local CSV changes temporarily
           git add atmotube_pro2_export_sample_default.csv
+          git stash push -m "Auto-update Atmotube CSV"
           
-          # Commit cleanly (or skip if nothing changed)
+          # Pull down whatever you just pushed via the browser/terminal
+          git pull --rebase origin main
+          
+          # Pop our CSV changes back on top
+          git stash pop || true
+          
+          # Commit and Push
+          git add atmotube_pro2_export_sample_default.csv
           git diff --quiet && git diff --staged --quiet || git commit -m "Auto-update Atmotube data [skip ci]"
-          
-          # Pull latest changes via rebase, effectively putting our new commit on top of whatever is there
-          git pull origin main
           git push
           
       - name: Deploy to shinyapps.io
