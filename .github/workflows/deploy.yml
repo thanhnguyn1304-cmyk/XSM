@@ -46,6 +46,7 @@ jobs:
           git add atmotube_pro2_export_sample_default.csv
           # Only commit if there are changes
           git diff --quiet && git diff --staged --quiet || git commit -m "Auto-update Atmotube data [skip ci]"
+          git pull --rebase origin main
           git push
           
       - name: Deploy to shinyapps.io
