@@ -33,7 +33,7 @@ jobs:
 
       - name: Install R packages
         run: |
-          Rscript -e 'install.packages(c("httr", "jsonlite", "dplyr", "lubridate", "rsconnect"), repos="https://cloud.r-project.org")'
+          Rscript -e 'install.packages(c("httr", "jsonlite", "dplyr", "lubridate", "rsconnect", "shiny", "leaflet", "ggplot2", "DT", "blastula", "glue"))'
           
       - name: Fetch Latest Atmotube Data
         env:
