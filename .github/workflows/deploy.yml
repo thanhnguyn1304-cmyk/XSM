@@ -65,7 +65,15 @@ jobs:
           SHINYAPPS_NAME: ${{ secrets.SHINYAPPS_NAME }}
           SHINYAPPS_TOKEN: ${{ secrets.SHINYAPPS_TOKEN }}
           SHINYAPPS_SECRET: ${{ secrets.SHINYAPPS_SECRET }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASS: ${{ secrets.SMTP_PASS }}
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
         run: |
+          # Dynamically create the .Renviron file so shinyapps.io can read the email passwords
+          echo "SMTP_USER=${SMTP_USER}" > .Renviron
+          echo "SMTP_PASS=${SMTP_PASS}" >> .Renviron
+          echo "SMTP_HOST=${SMTP_HOST}" >> .Renviron
+          
           # Create deployment script block to handle authentication implicitly
           cat << 'EOF' > run_deploy.R
           library(rsconnect)
