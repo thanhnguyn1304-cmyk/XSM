@@ -82,6 +82,7 @@ jobs:
           
           # Create deployment script block to handle authentication implicitly
           cat << 'EOF' > run_deploy.R
+          options(repos = c(CRAN = "https://cloud.r-project.org"))
           library(rsconnect)
           setAccountInfo(name=Sys.getenv("SHINYAPPS_NAME"),
                          token=Sys.getenv("SHINYAPPS_TOKEN"),
