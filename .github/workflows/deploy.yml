@@ -43,10 +43,19 @@ jobs:
         run: |
           git config --global user.name "GitHub Actions Bot"
           git config --global user.email "actions@github.com"
+          git config --global pull.rebase true
+          
+          # Fetch the latest state from remote
+          git fetch origin main
+          
+          # Add our changes
           git add atmotube_pro2_export_sample_default.csv
-          # Only commit if there are changes
+          
+          # Commit cleanly (or skip if nothing changed)
           git diff --quiet && git diff --staged --quiet || git commit -m "Auto-update Atmotube data [skip ci]"
-          git pull --rebase origin main
+          
+          # Pull latest changes via rebase, effectively putting our new commit on top of whatever is there
+          git pull origin main
           git push
           
       - name: Deploy to shinyapps.io
