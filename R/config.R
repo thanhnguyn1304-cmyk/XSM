@@ -92,6 +92,8 @@ CONFIG <- list(
         "Longitude" = "Longitude",
         "Altitude (m)" = "Altitude",
         "Position Error (m)" = "Position_Error",
-        "Battery (%)" = "Battery"
+        "Battery (%)" = "Battery",
+        "Charging" = "Charging",
+        "Motion" = "Motion"
     )
 )
