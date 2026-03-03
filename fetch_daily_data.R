@@ -14,9 +14,9 @@ if (API_KEY == "") {
 }
 CSV_FILE <- "atmotube_pro2_export_sample_default.csv"
 
-# Time window: past 7 days (to ensure we don't miss days if the PC is off)
+# Time window: past 1 day (GitHub Action runs daily)
 end_time <- Sys.time()
-start_time <- end_time - days(7)
+start_time <- end_time - days(1)
 
 # Format for API: "2026-03-01T23:56:03Z"
 fmt_time <- function(t) {
