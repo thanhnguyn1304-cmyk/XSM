@@ -26,21 +26,14 @@ jobs:
         with:
           r-version: 'release'
           
-      - name: Setup R dependencies
-        uses: r-lib/actions/setup-r-dependencies@v2
-        with:
-          packages: |
-            any::httr
-            any::jsonlite
-            any::dplyr
-            any::lubridate
-            any::rsconnect
-            any::shiny
-            any::leaflet
-            any::ggplot2
-            any::DT
-            any::blastula
-            any::glue
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libcurl4-openssl-dev libssl-dev libudunits2-dev libgdal-dev libgeos-dev libproj-dev
+
+      - name: Install R packages
+        run: |
+          Rscript -e 'install.packages(c("httr", "jsonlite", "dplyr", "lubridate", "rsconnect", "shiny", "leaflet", "ggplot2", "DT", "blastula", "glue"))'
           
       - name: Fetch Latest Atmotube Data
         env:
